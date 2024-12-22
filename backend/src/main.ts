@@ -9,12 +9,17 @@ import {
 import { ValidationPipe as VP } from './common/pipes/validation.pipe';
 import { SwaggerModule } from '@nestjs/swagger';
 import { swaggerConfig } from './config/swagger.config';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { join } from 'path';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   const configService = app.get(ConfigService);
   app.setGlobalPrefix('api');
+  app.useStaticAssets(join(__dirname, '..', 'uploads'), {
+    prefix: '/uploads', // This is the URL prefix for your static files
+  });
   app.useGlobalPipes(new VP());
   app.useGlobalPipes(
     new ValidationPipe({
@@ -43,6 +48,6 @@ async function bootstrap() {
     SwaggerModule.createDocument(app, swaggerConfig),
   );
 
-  await app.listen(configService.get<number>('APP_PORT', 3000));
+  await app.listen(configService.get<number>('APP_PORT', 5000));
 }
 bootstrap();

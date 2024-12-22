@@ -7,6 +7,9 @@ import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmAsyncConfig } from './config/typeorm.config';
+import { VideoModule } from './modules/video/video.module';
+import { join } from 'path';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
@@ -14,6 +17,11 @@ import { typeOrmAsyncConfig } from './config/typeorm.config';
       envFilePath: ['.env'],
       isGlobal: true,
       cache: true,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+      serveRoot: '/uploads',
+      exclude: ['/*'],
     }),
     ThrottlerModule.forRootAsync({
       useFactory: async () => ({
@@ -28,6 +36,7 @@ import { typeOrmAsyncConfig } from './config/typeorm.config';
     TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
     AuthModule,
     UsersModule,
+    VideoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
