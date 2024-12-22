@@ -6,6 +6,7 @@ import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { AuthProvider } from '../data/auth-provider.enum';
 import { UserTypes } from '../data/user-type.enum';
 import { LoginLog } from 'src/modules/auth/entities/login-log.entity';
+import { Video } from 'src/modules/video/entities/video.entity';
 @Entity()
 export class User extends CustomBaseEntity {
   @Column({ type: 'varchar', length: 30, unique: true, nullable: true })
@@ -70,4 +71,9 @@ export class User extends CustomBaseEntity {
     default: AuthProvider.EMAIL,
   })
   authProvider: string;
+
+  @OneToMany(() => Video, (video) => video.user, {
+    cascade: true,
+  })
+  videos: Video[];
 }
