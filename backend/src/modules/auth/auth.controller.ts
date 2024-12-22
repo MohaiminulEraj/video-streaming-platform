@@ -24,8 +24,10 @@ import {
   VerificationCodeSenderDto,
 } from './dto/auth.dto';
 import { AuthService } from './service/auth.service';
+import { ThrottlerGuard } from '@nestjs/throttler';
 
 @ApiTags('🌏 🔒 Auth API')
+@UseGuards(ThrottlerGuard)
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
