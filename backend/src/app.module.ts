@@ -10,6 +10,7 @@ import { typeOrmAsyncConfig } from './config/typeorm.config';
 import { VideoModule } from './modules/video/video.module';
 import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { MinioModule } from './modules/minio/minio.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     AuthModule,
     UsersModule,
     VideoModule,
+    MinioModule,
   ],
   controllers: [AppController],
   providers: [AppService],
