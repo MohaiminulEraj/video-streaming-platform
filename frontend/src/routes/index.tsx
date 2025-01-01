@@ -9,6 +9,7 @@ import { Login } from "../pages/Login";
 import { Upload } from "../pages/Upload";
 import { Layout } from "../components/Layout";
 import { useAuthStore } from "../store/authStore";
+import { Register } from "../pages/Register";
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
       },
       {
         path: "upload",
