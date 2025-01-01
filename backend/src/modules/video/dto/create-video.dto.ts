@@ -5,6 +5,7 @@ export class CreateVideoDto {
   @ApiProperty({
     type: 'string',
     description: 'Video title',
+    required: true,
     example: 'Video Title',
   })
   @IsString()
@@ -14,6 +15,7 @@ export class CreateVideoDto {
   @ApiProperty({
     type: 'string',
     description: 'Directory UUID',
+    required: false,
     example: 'Video Description',
   })
   @IsString()
@@ -23,6 +25,7 @@ export class CreateVideoDto {
   @ApiProperty({
     type: 'string',
     format: 'binary',
+    required: true,
     description: 'Video file',
   })
   @IsOptional()

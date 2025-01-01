@@ -13,7 +13,7 @@ export const minioConfig: any = {
       useSSL: configService.get<string>('MINIO_SSL', 'true') === 'true',
       accessKey: configService.get<string>('MINIO_ACCESS_KEY', ''),
       secretKey: configService.get<string>('MINIO_SECRET_KEY', ''),
-      //   region: configService.get<string>('MINIO_REGION', ''),
+      region: configService.get<string>('MINIO_REGION', ''),
     };
   },
 };

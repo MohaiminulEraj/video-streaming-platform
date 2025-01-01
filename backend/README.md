@@ -56,6 +56,9 @@ $ yarn run test:e2e
 
 # test coverage
 $ yarn run test:cov
+
+# run minio
+$ .\minio.exe server F:\Data --console-address :9001
 ```
 
 ## Support
