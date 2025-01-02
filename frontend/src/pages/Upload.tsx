@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Upload as UploadIcon } from "lucide-react";
+import { VideoPreview } from "../components/video/VideoPlayer";
 
 export const Upload: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -12,7 +13,7 @@ export const Upload: React.FC = () => {
     e.preventDefault();
 
     if (!file) return;
-
+    console.log({ file });
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
@@ -53,6 +54,8 @@ export const Upload: React.FC = () => {
             </div>
           </div>
         </div>
+
+        <VideoPreview file={file} />
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
